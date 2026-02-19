@@ -69,12 +69,12 @@
       display: flex;
       gap: 2rem;
       list-style: none;
-    }
-
-    .nav-controls {
-      display: flex;
       align-items: center;
-      gap: 1rem;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 72vw;
+      padding-bottom: 0.2rem;
     }
 
     .nav-links a {
@@ -84,6 +84,7 @@
       font-size: 0.95rem;
       transition: var(--transition);
       position: relative;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -103,23 +104,6 @@
 
     .nav-links a:hover::after {
       width: 100%;
-    }
-
-    .admin-open-btn {
-      background: var(--primary-color);
-      color: #fff;
-      border: 0;
-      border-radius: 8px;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .admin-open-btn:hover {
-      background: #084f96;
-      transform: translateY(-1px);
     }
 
     header {
@@ -1060,15 +1044,14 @@
 
       .nav-container {
         padding: 0 1.5rem;
-      }
-
-      .nav-controls {
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
       }
 
       .nav-links {
-        gap: 1rem;
+        gap: 0.9rem;
+        max-width: 100%;
       }
 
       header {
@@ -1131,12 +1114,7 @@
         font-size: 1.1rem;
       }
 
-      .admin-open-btn {
-        padding: 0.45rem 0.75rem;
-      }
-
       .nav-links {
-        flex-wrap: wrap;
         gap: 0.75rem;
         font-size: 0.85rem;
       }
@@ -1215,15 +1193,12 @@
 <nav>
   <div class="nav-container">
     <a href="#" class="nav-brand">Karan Mistry</a>
-    <div class="nav-controls">
-      <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#work">Work</a>
-      </div>
-      <button type="button" class="admin-open-btn" id="adminOpenButton">Admin</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#work">Work</a>
     </div>
   </div>
 </nav>
@@ -1642,8 +1617,16 @@
   (function () {
     var STORAGE_KEY = 'karan_portfolio_content_v1';
     var AUTH_KEY = 'karan_portfolio_admin_auth_v1';
+    var ADMIN_LINK_PARAM = 'admin';
     var ADMIN_ID = 'admin';
     var ADMIN_PASSWORD = 'm3333@india';
+    var NAV_LABEL_OVERRIDES = {
+      about: 'About',
+      skills: 'Skills',
+      experience: 'Experience',
+      education: 'Education',
+      work: 'Work'
+    };
 
     var portfolioRoot = document.getElementById('portfolioSections');
     var navLinks = document.getElementById('navLinks');
@@ -1651,7 +1634,6 @@
     var adminOverlay = document.getElementById('adminOverlay');
     var adminMessage = document.getElementById('adminMessage');
 
-    var adminOpenButton = document.getElementById('adminOpenButton');
     var adminCloseButton = document.getElementById('adminCloseButton');
     var adminLoginCard = document.getElementById('adminLoginCard');
     var adminDashboard = document.getElementById('adminDashboard');
@@ -1735,6 +1717,31 @@
       return 'Section ' + (index + 1);
     }
 
+    function getNavLabel(section, index) {
+      if (section.dataset.navLabel && section.dataset.navLabel.trim()) {
+        return section.dataset.navLabel.trim();
+      }
+
+      if (NAV_LABEL_OVERRIDES[section.id]) {
+        return NAV_LABEL_OVERRIDES[section.id];
+      }
+
+      var title = getSectionTitle(section, index);
+      if (title.length > 24) {
+        return title.slice(0, 24).trim() + '...';
+      }
+      return title;
+    }
+
+    function isAdminLinkRequest() {
+      var params = new URLSearchParams(window.location.search);
+      var adminValue = (params.get(ADMIN_LINK_PARAM) || '').toLowerCase();
+      if (adminValue === '1' || adminValue === 'true' || adminValue === 'yes') {
+        return true;
+      }
+      return window.location.hash === '#admin';
+    }
+
     function ensureSectionIds() {
       var usedIds = {};
       var sections = getSections();
@@ -1813,7 +1820,8 @@
         var section = sections[i];
         var link = document.createElement('a');
         link.href = '#' + section.id;
-        link.textContent = getSectionTitle(section, i);
+        link.textContent = getNavLabel(section, i);
+        link.title = getSectionTitle(section, i);
         navLinks.appendChild(link);
       }
     }
@@ -1895,11 +1903,6 @@
       }
       hideMessage();
     }
-
-    adminOpenButton.addEventListener('click', function () {
-      syncAdminLists(sectionSelect.value);
-      openAdminPanel();
-    });
 
     adminCloseButton.addEventListener('click', closeAdminPanel);
     adminOverlay.addEventListener('click', closeAdminPanel);
@@ -2110,6 +2113,10 @@
     refreshNavLinks();
     syncAdminLists(sectionSelect.value);
     setAuthenticated(sessionStorage.getItem(AUTH_KEY) === '1');
+
+    if (isAdminLinkRequest()) {
+      openAdminPanel();
+    }
   }());
 </script>
 </body>
