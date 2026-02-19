@@ -1198,7 +1198,7 @@
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
-      <a href="#work">Work</a>
+      <a href="#work">Field Work</a>
     </div>
   </div>
 </nav>
@@ -1620,13 +1620,13 @@
     var ADMIN_LINK_PARAM = 'admin';
     var ADMIN_ID = 'admin';
     var ADMIN_PASSWORD = 'm3333@india';
-    var NAV_LABEL_OVERRIDES = {
-      about: 'About',
-      skills: 'Skills',
-      experience: 'Experience',
-      education: 'Education',
-      work: 'Work'
-    };
+    var FIXED_NAV_ITEMS = [
+      { id: 'about', label: 'About' },
+      { id: 'skills', label: 'Skills' },
+      { id: 'experience', label: 'Experience' },
+      { id: 'education', label: 'Education' },
+      { id: 'work', label: 'Field Work' }
+    ];
 
     var portfolioRoot = document.getElementById('portfolioSections');
     var navLinks = document.getElementById('navLinks');
@@ -1717,22 +1717,6 @@
       return 'Section ' + (index + 1);
     }
 
-    function getNavLabel(section, index) {
-      if (section.dataset.navLabel && section.dataset.navLabel.trim()) {
-        return section.dataset.navLabel.trim();
-      }
-
-      if (NAV_LABEL_OVERRIDES[section.id]) {
-        return NAV_LABEL_OVERRIDES[section.id];
-      }
-
-      var title = getSectionTitle(section, index);
-      if (title.length > 24) {
-        return title.slice(0, 24).trim() + '...';
-      }
-      return title;
-    }
-
     function isAdminLinkRequest() {
       var params = new URLSearchParams(window.location.search);
       var adminValue = (params.get(ADMIN_LINK_PARAM) || '').toLowerCase();
@@ -1813,14 +1797,18 @@
     }
 
     function refreshNavLinks() {
-      var sections = getSections();
       navLinks.innerHTML = '';
 
-      for (var i = 0; i < sections.length; i += 1) {
-        var section = sections[i];
+      for (var i = 0; i < FIXED_NAV_ITEMS.length; i += 1) {
+        var navItem = FIXED_NAV_ITEMS[i];
+        var section = findSectionById(navItem.id);
+        if (!section) {
+          continue;
+        }
+
         var link = document.createElement('a');
-        link.href = '#' + section.id;
-        link.textContent = getNavLabel(section, i);
+        link.href = '#' + navItem.id;
+        link.textContent = navItem.label;
         link.title = getSectionTitle(section, i);
         navLinks.appendChild(link);
       }
