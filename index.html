@@ -71,6 +71,12 @@
       list-style: none;
     }
 
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
@@ -97,6 +103,23 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .admin-open-btn {
+      background: var(--primary-color);
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .admin-open-btn:hover {
+      background: #084f96;
+      transform: translateY(-1px);
     }
 
     header {
@@ -780,6 +803,224 @@
       box-shadow: 0 2px 8px rgba(67, 206, 162, 0.1);
       text-align: justify;
     }
+
+    .admin-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 20, 25, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 1200;
+    }
+
+    .admin-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .admin-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(430px, 100vw);
+      height: 100vh;
+      background: #fff;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.16);
+      transform: translateX(100%);
+      transition: var(--transition);
+      z-index: 1250;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-panel.is-visible {
+      transform: translateX(0);
+    }
+
+    .admin-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      background: #f8fafc;
+    }
+
+    .admin-panel-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+
+    .admin-close-btn {
+      border: 0;
+      background: #e2e8f0;
+      color: #0f172a;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: var(--transition);
+    }
+
+    .admin-close-btn:hover {
+      background: #cbd5e1;
+    }
+
+    .admin-panel-body {
+      padding: 1rem 1.2rem 1.4rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .admin-message {
+      margin: 0;
+      background: #e0f2fe;
+      color: #075985;
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .admin-message.is-error {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .admin-card {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.9rem;
+      background: #fff;
+    }
+
+    .admin-card h4 {
+      margin: 0 0 0.8rem;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .admin-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .admin-field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .admin-field input,
+    .admin-field select,
+    .admin-field textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.9rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+      background: #fff;
+    }
+
+    .admin-field textarea {
+      min-height: 130px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .admin-field input:focus,
+    .admin-field select:focus,
+    .admin-field textarea:focus {
+      outline: 2px solid rgba(10, 102, 194, 0.25);
+      border-color: var(--primary-color);
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-actions button {
+      border: 0;
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .admin-btn-primary {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    .admin-btn-primary:hover {
+      background: #084f96;
+    }
+
+    .admin-btn-secondary {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .admin-btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    .admin-btn-danger {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .admin-btn-danger:hover {
+      background: #b91c1c;
+    }
+
+    .admin-credentials {
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .admin-photo-block {
+      margin: 1.2rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+      max-width: 100%;
+    }
+
+    .admin-photo-block img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 340px;
+    }
+
+    .admin-photo-block figcaption {
+      padding: 0.75rem 0.85rem;
+      color: #334155;
+      font-size: 0.9rem;
+      background: #f8fafc;
+    }
     @media (max-width: 1024px) {
       .nav-links {
         gap: 1.5rem;
@@ -819,6 +1060,11 @@
 
       .nav-container {
         padding: 0 1.5rem;
+      }
+
+      .nav-controls {
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       .nav-links {
@@ -883,6 +1129,10 @@
     @media (max-width: 480px) {
       .nav-brand {
         font-size: 1.1rem;
+      }
+
+      .admin-open-btn {
+        padding: 0.45rem 0.75rem;
       }
 
       .nav-links {
@@ -965,12 +1215,15 @@
 <nav>
   <div class="nav-container">
     <a href="#" class="nav-brand">Karan Mistry</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#work">Work</a>
+    <div class="nav-controls">
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#work">Work</a>
+      </div>
+      <button type="button" class="admin-open-btn" id="adminOpenButton">Admin</button>
     </div>
   </div>
 </nav>
@@ -988,6 +1241,7 @@
     </div>
   </div>
 </header>
+<main id="portfolioSections">
 <section id="about">
 <h2>Professional Summary</h2>
 <p>
@@ -1275,5 +1529,588 @@
   </div>
 </div>
 </section>
+</main>
+<div class="admin-overlay" id="adminOverlay"></div>
+<aside class="admin-panel" id="adminPanel" aria-hidden="true">
+  <div class="admin-panel-header">
+    <h3>Portfolio Admin</h3>
+    <button type="button" class="admin-close-btn" id="adminCloseButton" aria-label="Close Admin Panel">&times;</button>
+  </div>
+  <div class="admin-panel-body">
+    <p class="admin-message" id="adminMessage"></p>
+
+    <div class="admin-card" id="adminLoginCard">
+      <h4>Login</h4>
+      <form id="adminLoginForm">
+        <div class="admin-field">
+          <label for="adminId">Admin ID</label>
+          <input type="text" id="adminId" autocomplete="username" required />
+        </div>
+        <div class="admin-field">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" autocomplete="current-password" required />
+        </div>
+        <div class="admin-actions">
+          <button type="submit" class="admin-btn-primary">Sign In</button>
+        </div>
+      </form>
+      <p class="admin-credentials">Default: ID <strong>admin</strong> | Password <strong>m3333@india</strong></p>
+    </div>
+
+    <div id="adminDashboard" style="display:none;">
+      <div class="admin-card">
+        <h4>Edit Section Content</h4>
+        <div class="admin-field">
+          <label for="sectionSelect">Select Section</label>
+          <select id="sectionSelect"></select>
+        </div>
+        <div class="admin-field">
+          <label for="sectionHtml">Section HTML Content</label>
+          <textarea id="sectionHtml"></textarea>
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="admin-btn-primary" id="saveSectionButton">Save Section</button>
+          <button type="button" class="admin-btn-danger" id="removeSectionButton">Remove Section</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h4>Add New Section</h4>
+        <div class="admin-field">
+          <label for="newSectionId">Section ID (optional)</label>
+          <input type="text" id="newSectionId" placeholder="example: achievements" />
+        </div>
+        <div class="admin-field">
+          <label for="newSectionTitle">Section Title</label>
+          <input type="text" id="newSectionTitle" placeholder="New Section Title" />
+        </div>
+        <div class="admin-field">
+          <label for="newSectionHtml">Section Content (HTML)</label>
+          <textarea id="newSectionHtml" placeholder="<p>Add your content here...</p>"></textarea>
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="admin-btn-primary" id="addSectionButton">Add Section</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h4>Photo Management</h4>
+        <div class="admin-field">
+          <label for="photoSectionSelect">Target Section</label>
+          <select id="photoSectionSelect"></select>
+        </div>
+        <div class="admin-field">
+          <label for="photoFile">Photo File</label>
+          <input type="file" id="photoFile" accept="image/*" />
+        </div>
+        <div class="admin-field">
+          <label for="photoAlt">Alt Text</label>
+          <input type="text" id="photoAlt" placeholder="Describe the image" />
+        </div>
+        <div class="admin-field">
+          <label for="photoCaption">Caption (optional)</label>
+          <input type="text" id="photoCaption" placeholder="Short caption" />
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="admin-btn-primary" id="addPhotoButton">Add Photo</button>
+        </div>
+
+        <div class="admin-field">
+          <label for="removePhotoSectionSelect">Section for Photo Removal</label>
+          <select id="removePhotoSectionSelect"></select>
+        </div>
+        <div class="admin-field">
+          <label for="photoSelect">Select Photo</label>
+          <select id="photoSelect"></select>
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="admin-btn-danger" id="removePhotoButton">Remove Photo</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h4>Session</h4>
+        <div class="admin-actions">
+          <button type="button" class="admin-btn-secondary" id="logoutButton">Logout</button>
+          <button type="button" class="admin-btn-danger" id="resetChangesButton">Reset All Saved Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+<script>
+  (function () {
+    var STORAGE_KEY = 'karan_portfolio_content_v1';
+    var AUTH_KEY = 'karan_portfolio_admin_auth_v1';
+    var ADMIN_ID = 'admin';
+    var ADMIN_PASSWORD = 'm3333@india';
+
+    var portfolioRoot = document.getElementById('portfolioSections');
+    var navLinks = document.getElementById('navLinks');
+    var adminPanel = document.getElementById('adminPanel');
+    var adminOverlay = document.getElementById('adminOverlay');
+    var adminMessage = document.getElementById('adminMessage');
+
+    var adminOpenButton = document.getElementById('adminOpenButton');
+    var adminCloseButton = document.getElementById('adminCloseButton');
+    var adminLoginCard = document.getElementById('adminLoginCard');
+    var adminDashboard = document.getElementById('adminDashboard');
+
+    var adminLoginForm = document.getElementById('adminLoginForm');
+    var adminIdInput = document.getElementById('adminId');
+    var adminPasswordInput = document.getElementById('adminPassword');
+
+    var sectionSelect = document.getElementById('sectionSelect');
+    var sectionHtml = document.getElementById('sectionHtml');
+    var saveSectionButton = document.getElementById('saveSectionButton');
+    var removeSectionButton = document.getElementById('removeSectionButton');
+
+    var newSectionId = document.getElementById('newSectionId');
+    var newSectionTitle = document.getElementById('newSectionTitle');
+    var newSectionHtml = document.getElementById('newSectionHtml');
+    var addSectionButton = document.getElementById('addSectionButton');
+
+    var photoSectionSelect = document.getElementById('photoSectionSelect');
+    var photoFile = document.getElementById('photoFile');
+    var photoAlt = document.getElementById('photoAlt');
+    var photoCaption = document.getElementById('photoCaption');
+    var addPhotoButton = document.getElementById('addPhotoButton');
+
+    var removePhotoSectionSelect = document.getElementById('removePhotoSectionSelect');
+    var photoSelect = document.getElementById('photoSelect');
+    var removePhotoButton = document.getElementById('removePhotoButton');
+
+    var logoutButton = document.getElementById('logoutButton');
+    var resetChangesButton = document.getElementById('resetChangesButton');
+
+    function slugify(value) {
+      var normalized = (value || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      return normalized || 'section';
+    }
+
+    function escapeHtml(text) {
+      return (text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showMessage(message, isError) {
+      adminMessage.textContent = message;
+      adminMessage.style.display = 'block';
+      adminMessage.classList.toggle('is-error', !!isError);
+    }
+
+    function hideMessage() {
+      adminMessage.textContent = '';
+      adminMessage.style.display = 'none';
+      adminMessage.classList.remove('is-error');
+    }
+
+    function getSections() {
+      return Array.prototype.slice.call(portfolioRoot.querySelectorAll('section'));
+    }
+
+    function findSectionById(sectionId) {
+      var sections = getSections();
+      for (var i = 0; i < sections.length; i += 1) {
+        if (sections[i].id === sectionId) {
+          return sections[i];
+        }
+      }
+      return null;
+    }
+
+    function getSectionTitle(section, index) {
+      var heading = section.querySelector('h2');
+      if (heading && heading.textContent.trim()) {
+        return heading.textContent.trim();
+      }
+      return 'Section ' + (index + 1);
+    }
+
+    function ensureSectionIds() {
+      var usedIds = {};
+      var sections = getSections();
+
+      for (var i = 0; i < sections.length; i += 1) {
+        var section = sections[i];
+        var currentId = section.id ? slugify(section.id) : '';
+        if (!currentId) {
+          currentId = slugify(getSectionTitle(section, i));
+        }
+
+        var uniqueId = currentId;
+        var suffix = 2;
+        while (usedIds[uniqueId]) {
+          uniqueId = currentId + '-' + suffix;
+          suffix += 1;
+        }
+
+        usedIds[uniqueId] = true;
+        section.id = uniqueId;
+      }
+    }
+
+    function savePortfolioContent() {
+      try {
+        localStorage.setItem(STORAGE_KEY, portfolioRoot.innerHTML);
+        return true;
+      } catch (error) {
+        showMessage('Unable to save changes. Storage may be full.', true);
+        return false;
+      }
+    }
+
+    function loadPortfolioContent() {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        portfolioRoot.innerHTML = saved;
+      }
+    }
+
+    function populateSectionSelect(selectElement, selectedId) {
+      var sections = getSections();
+      var options = sections.map(function (section, index) {
+        return {
+          id: section.id,
+          label: getSectionTitle(section, index)
+        };
+      });
+
+      selectElement.innerHTML = '';
+
+      for (var i = 0; i < options.length; i += 1) {
+        var option = document.createElement('option');
+        option.value = options[i].id;
+        option.textContent = options[i].label + ' (#' + options[i].id + ')';
+        selectElement.appendChild(option);
+      }
+
+      if (options.length === 0) {
+        var noOption = document.createElement('option');
+        noOption.value = '';
+        noOption.textContent = 'No sections available';
+        selectElement.appendChild(noOption);
+      }
+
+      if (selectedId && findSectionById(selectedId)) {
+        selectElement.value = selectedId;
+      }
+    }
+
+    function refreshNavLinks() {
+      var sections = getSections();
+      navLinks.innerHTML = '';
+
+      for (var i = 0; i < sections.length; i += 1) {
+        var section = sections[i];
+        var link = document.createElement('a');
+        link.href = '#' + section.id;
+        link.textContent = getSectionTitle(section, i);
+        navLinks.appendChild(link);
+      }
+    }
+
+    function refreshPhotoSelect() {
+      var sectionId = removePhotoSectionSelect.value;
+      var section = findSectionById(sectionId);
+      photoSelect.innerHTML = '';
+
+      if (!section) {
+        var emptyOption = document.createElement('option');
+        emptyOption.value = '';
+        emptyOption.textContent = 'No photos available';
+        photoSelect.appendChild(emptyOption);
+        return;
+      }
+
+      var images = section.querySelectorAll('img');
+      if (images.length === 0) {
+        var noPhotoOption = document.createElement('option');
+        noPhotoOption.value = '';
+        noPhotoOption.textContent = 'No photos available';
+        photoSelect.appendChild(noPhotoOption);
+        return;
+      }
+
+      for (var i = 0; i < images.length; i += 1) {
+        var photoOption = document.createElement('option');
+        photoOption.value = String(i);
+        var label = images[i].alt && images[i].alt.trim() ? images[i].alt.trim() : 'Image ' + (i + 1);
+        photoOption.textContent = label;
+        photoSelect.appendChild(photoOption);
+      }
+    }
+
+    function loadSectionEditor() {
+      var section = findSectionById(sectionSelect.value);
+      if (!section) {
+        sectionHtml.value = '';
+        return;
+      }
+      sectionHtml.value = section.innerHTML.trim();
+      photoSectionSelect.value = section.id;
+      removePhotoSectionSelect.value = section.id;
+      refreshPhotoSelect();
+    }
+
+    function syncAdminLists(preferredSectionId) {
+      ensureSectionIds();
+      refreshNavLinks();
+      populateSectionSelect(sectionSelect, preferredSectionId);
+      populateSectionSelect(photoSectionSelect, preferredSectionId);
+      populateSectionSelect(removePhotoSectionSelect, preferredSectionId);
+      loadSectionEditor();
+    }
+
+    function openAdminPanel() {
+      adminPanel.classList.add('is-visible');
+      adminOverlay.classList.add('is-visible');
+      adminPanel.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeAdminPanel() {
+      adminPanel.classList.remove('is-visible');
+      adminOverlay.classList.remove('is-visible');
+      adminPanel.setAttribute('aria-hidden', 'true');
+      hideMessage();
+    }
+
+    function setAuthenticated(isAuthenticated) {
+      if (isAuthenticated) {
+        sessionStorage.setItem(AUTH_KEY, '1');
+        adminLoginCard.style.display = 'none';
+        adminDashboard.style.display = 'block';
+      } else {
+        sessionStorage.removeItem(AUTH_KEY);
+        adminLoginCard.style.display = 'block';
+        adminDashboard.style.display = 'none';
+      }
+      hideMessage();
+    }
+
+    adminOpenButton.addEventListener('click', function () {
+      syncAdminLists(sectionSelect.value);
+      openAdminPanel();
+    });
+
+    adminCloseButton.addEventListener('click', closeAdminPanel);
+    adminOverlay.addEventListener('click', closeAdminPanel);
+
+    adminLoginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (adminIdInput.value.trim() === ADMIN_ID && adminPasswordInput.value === ADMIN_PASSWORD) {
+        setAuthenticated(true);
+        syncAdminLists(sectionSelect.value);
+        showMessage('Login successful.', false);
+        adminLoginForm.reset();
+        return;
+      }
+
+      showMessage('Invalid ID or password.', true);
+    });
+
+    sectionSelect.addEventListener('change', function () {
+      loadSectionEditor();
+      hideMessage();
+    });
+
+    saveSectionButton.addEventListener('click', function () {
+      var section = findSectionById(sectionSelect.value);
+      if (!section) {
+        showMessage('Please select a valid section first.', true);
+        return;
+      }
+
+      if (!sectionHtml.value.trim()) {
+        showMessage('Section content cannot be empty.', true);
+        return;
+      }
+
+      section.innerHTML = sectionHtml.value;
+      if (savePortfolioContent()) {
+        syncAdminLists(section.id);
+        showMessage('Section updated successfully.', false);
+      }
+    });
+
+    removeSectionButton.addEventListener('click', function () {
+      var section = findSectionById(sectionSelect.value);
+      if (!section) {
+        showMessage('Please select a valid section first.', true);
+        return;
+      }
+
+      var approved = window.confirm('Are you sure you want to remove this entire section?');
+      if (!approved) {
+        return;
+      }
+
+      section.remove();
+      if (savePortfolioContent()) {
+        syncAdminLists('');
+        showMessage('Section removed.', false);
+      }
+    });
+
+    addSectionButton.addEventListener('click', function () {
+      var title = newSectionTitle.value.trim();
+      var customId = newSectionId.value.trim();
+      var bodyHtml = newSectionHtml.value.trim();
+
+      if (!title) {
+        showMessage('Please provide a section title.', true);
+        return;
+      }
+
+      var sections = getSections();
+      var usedIds = {};
+      for (var i = 0; i < sections.length; i += 1) {
+        usedIds[sections[i].id] = true;
+      }
+
+      var baseId = slugify(customId || title);
+      var uniqueId = baseId;
+      var suffix = 2;
+      while (usedIds[uniqueId]) {
+        uniqueId = baseId + '-' + suffix;
+        suffix += 1;
+      }
+
+      var section = document.createElement('section');
+      section.id = uniqueId;
+      section.innerHTML = '<h2>' + escapeHtml(title) + '</h2>' + (bodyHtml || '<p>Add your content here.</p>');
+      portfolioRoot.appendChild(section);
+
+      if (savePortfolioContent()) {
+        syncAdminLists(uniqueId);
+        showMessage('New section added.', false);
+        newSectionId.value = '';
+        newSectionTitle.value = '';
+        newSectionHtml.value = '';
+      }
+    });
+
+    addPhotoButton.addEventListener('click', function () {
+      var targetSection = findSectionById(photoSectionSelect.value);
+      if (!targetSection) {
+        showMessage('Please select a target section for the photo.', true);
+        return;
+      }
+
+      if (!photoFile.files || !photoFile.files[0]) {
+        showMessage('Please choose an image file to upload.', true);
+        return;
+      }
+
+      var file = photoFile.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (loadEvent) {
+        var figure = document.createElement('figure');
+        figure.className = 'admin-photo-block';
+
+        var image = document.createElement('img');
+        image.src = loadEvent.target.result;
+        image.alt = photoAlt.value.trim() || 'Uploaded photo';
+        figure.appendChild(image);
+
+        if (photoCaption.value.trim()) {
+          var caption = document.createElement('figcaption');
+          caption.textContent = photoCaption.value.trim();
+          figure.appendChild(caption);
+        }
+
+        targetSection.appendChild(figure);
+
+        if (savePortfolioContent()) {
+          syncAdminLists(targetSection.id);
+          showMessage('Photo added to section.', false);
+          photoFile.value = '';
+          photoAlt.value = '';
+          photoCaption.value = '';
+        }
+      };
+
+      reader.onerror = function () {
+        showMessage('Unable to read this image file.', true);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    removePhotoSectionSelect.addEventListener('change', function () {
+      refreshPhotoSelect();
+      hideMessage();
+    });
+
+    removePhotoButton.addEventListener('click', function () {
+      var targetSection = findSectionById(removePhotoSectionSelect.value);
+      if (!targetSection) {
+        showMessage('Please select a section first.', true);
+        return;
+      }
+
+      if (photoSelect.value === '') {
+        showMessage('No photo selected.', true);
+        return;
+      }
+
+      var imageIndex = parseInt(photoSelect.value, 10);
+      if (Number.isNaN(imageIndex)) {
+        showMessage('Please select a valid photo.', true);
+        return;
+      }
+
+      var images = targetSection.querySelectorAll('img');
+      var targetImage = images[imageIndex];
+      if (!targetImage) {
+        showMessage('Selected photo not found.', true);
+        return;
+      }
+
+      var parent = targetImage.parentElement;
+      if (parent && parent.classList.contains('admin-photo-block')) {
+        parent.remove();
+      } else {
+        targetImage.remove();
+      }
+
+      if (savePortfolioContent()) {
+        syncAdminLists(targetSection.id);
+        showMessage('Photo removed.', false);
+      }
+    });
+
+    logoutButton.addEventListener('click', function () {
+      setAuthenticated(false);
+      showMessage('Logged out.', false);
+    });
+
+    resetChangesButton.addEventListener('click', function () {
+      var approved = window.confirm('Reset all saved admin changes and reload the original page?');
+      if (!approved) {
+        return;
+      }
+
+      localStorage.removeItem(STORAGE_KEY);
+      window.location.reload();
+    });
+
+    loadPortfolioContent();
+    ensureSectionIds();
+    refreshNavLinks();
+    syncAdminLists(sectionSelect.value);
+    setAuthenticated(sessionStorage.getItem(AUTH_KEY) === '1');
+  }());
+</script>
 </body>
 </html>
