@@ -181,7 +181,8 @@
     .subtitle {
       font-size: clamp(1.05rem, 2vw, 1.35rem);
       margin: 0 0 1.5rem;
-      opacity: 0.96;
+      color: #d7f2ff;
+      opacity: 1;
       font-weight: 400;
       line-height: 1.5;
       max-width: 52ch;
@@ -244,52 +245,82 @@
     }
 
     .hero-right {
+      position: relative;
       border: 0;
-      background: rgba(8, 56, 98, 0.12);
+      background: transparent;
       border-radius: 24px;
-      padding: 1.85rem 1.6rem;
-      backdrop-filter: blur(12px);
-      box-shadow: none;
+      padding: 0;
       animation: fadeInUp 1.18s ease-out both;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.25rem;
-      min-height: 320px;
+      min-height: 500px;
       width: 100%;
+      overflow: visible;
+    }
+
+    .hero-shape {
+      position: absolute;
+      background: rgba(37, 114, 190, 0.72);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .hero-shape-one {
+      width: 160px;
+      height: 160px;
+      top: 40px;
+      left: 30px;
+    }
+
+    .hero-shape-two {
+      width: 175px;
+      height: 175px;
+      top: 170px;
+      left: 120px;
+      background: rgba(44, 126, 201, 0.68);
+    }
+
+    .hero-shape-three {
+      width: 150px;
+      height: 150px;
+      top: 260px;
+      left: 5px;
+      background: rgba(41, 111, 181, 0.66);
     }
 
     .hero-profile {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      justify-content: center;
+      position: relative;
       width: 100%;
-      margin-bottom: 0.35rem;
+      height: 100%;
     }
 
     .intro-img {
-      width: 210px;
-      height: 210px;
+      position: absolute;
+      right: -135px;
+      bottom: -100px;
+      width: 630px;
+      height: auto;
+      display: block;
+      max-width: none;
       object-fit: cover;
-      border-radius: 50%;
+      object-position: center bottom;
+      border-radius: 0;
       border: 0;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+      box-shadow: none;
+      filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.34));
       flex-shrink: 0;
       transition: var(--transition);
     }
 
     .intro-img:hover {
-      transform: translateY(-2px) scale(1.03);
+      transform: translateY(-4px);
     }
 
     .contact-links {
       display: flex;
       gap: 0.65rem;
       flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
+      justify-content: flex-start;
+      width: auto;
+      margin-top: 1rem;
     }
 
     .contact-links a {
@@ -1143,8 +1174,8 @@
       }
 
       .hero-right {
-        max-width: 760px;
-        min-height: 300px;
+        max-width: 100%;
+        min-height: 430px;
       }
 
       .hero-name {
@@ -1178,13 +1209,34 @@
       }
 
       .hero-right {
-        padding: 1.45rem 1.2rem;
-        min-height: 270px;
+        min-height: 350px;
       }
 
       .intro-img {
-        width: 180px;
-        height: 180px;
+        width: 470px;
+        right: -70px;
+        bottom: -78px;
+      }
+
+      .hero-shape-one {
+        width: 120px;
+        height: 120px;
+        top: 44px;
+        left: 24px;
+      }
+
+      .hero-shape-two {
+        width: 130px;
+        height: 130px;
+        top: 140px;
+        left: 88px;
+      }
+
+      .hero-shape-three {
+        width: 110px;
+        height: 110px;
+        top: 220px;
+        left: 6px;
       }
 
       .hero-name {
@@ -1273,14 +1325,25 @@
       }
 
       .hero-right {
-        border-radius: 18px;
-        padding: 1.15rem 1rem;
-        min-height: 240px;
+        min-height: 285px;
       }
 
       .intro-img {
-        width: 155px;
-        height: 155px;
+        width: 330px;
+        right: -48px;
+        bottom: -45px;
+      }
+
+      .hero-shape-one,
+      .hero-shape-two {
+        display: none;
+      }
+
+      .hero-shape-three {
+        width: 96px;
+        height: 96px;
+        top: 126px;
+        left: 10px;
       }
 
       .contact-links {
@@ -1366,15 +1429,18 @@
           <a class="hero-btn" href="#experience">View Experience</a>
           <a class="hero-btn hero-btn-secondary" href="#work">See Field Work</a>
         </div>
-      </div>
-      <aside class="hero-right" aria-label="Quick profile highlights">
-        <div class="hero-profile">
-          <img alt="Karan Mistry" class="intro-img" src="1.jpg"/>
-        </div>
         <div class="contact-links">
           <a href="tel:+14373662412">Call</a>
           <a href="mailto:karanmistry333@gmail.com">Email</a>
           <a href="https://www.linkedin.com/in/karan-mistry33" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <aside class="hero-right" aria-label="Quick profile highlights">
+        <span class="hero-shape hero-shape-one" aria-hidden="true"></span>
+        <span class="hero-shape hero-shape-two" aria-hidden="true"></span>
+        <span class="hero-shape hero-shape-three" aria-hidden="true"></span>
+        <div class="hero-profile">
+          <img alt="Karan Mistry" class="intro-img" src="1.png"/>
         </div>
       </aside>
     </div>
