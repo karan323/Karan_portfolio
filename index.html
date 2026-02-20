@@ -251,7 +251,7 @@
       border-radius: 24px;
       padding: 0;
       animation: fadeInUp 1.18s ease-out both;
-      min-height: 500px;
+      min-height: 560px;
       width: 100%;
       overflow: visible;
     }
@@ -261,6 +261,7 @@
       background: rgba(37, 114, 190, 0.72);
       border-radius: 4px;
       pointer-events: none;
+      z-index: 0;
     }
 
     .hero-shape-one {
@@ -292,22 +293,39 @@
       height: 100%;
     }
 
+    .hero-profile::before {
+      content: '';
+      position: absolute;
+      right: -10px;
+      bottom: -65px;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102, 219, 232, 0.30) 0%, rgba(78, 184, 219, 0.14) 48%, rgba(78, 184, 219, 0) 74%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .intro-img {
       position: absolute;
-      right: -135px;
-      bottom: -100px;
-      width: 630px;
+      right: -115px;
+      bottom: -330px;
+      width: 620px;
       height: auto;
       display: block;
       max-width: none;
       object-fit: cover;
       object-position: center bottom;
+      mask-image: radial-gradient(125% 120% at 56% 42%, #000 62%, rgba(0, 0, 0, 0.92) 75%, transparent 100%);
+      -webkit-mask-image: radial-gradient(125% 120% at 56% 42%, #000 62%, rgba(0, 0, 0, 0.92) 75%, transparent 100%);
       border-radius: 0;
       border: 0;
       box-shadow: none;
-      filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.34));
+      filter: saturate(0.98) brightness(1.02) drop-shadow(0 20px 38px rgba(0, 0, 0, 0.34));
       flex-shrink: 0;
       transition: var(--transition);
+      z-index: 2;
     }
 
     .intro-img:hover {
@@ -1175,7 +1193,7 @@
 
       .hero-right {
         max-width: 100%;
-        min-height: 430px;
+        min-height: 520px;
       }
 
       .hero-name {
@@ -1209,13 +1227,20 @@
       }
 
       .hero-right {
-        min-height: 350px;
+        min-height: 430px;
       }
 
       .intro-img {
         width: 470px;
-        right: -70px;
-        bottom: -78px;
+        right: -62px;
+        bottom: -245px;
+      }
+
+      .hero-profile::before {
+        right: -16px;
+        bottom: -65px;
+        width: 320px;
+        height: 320px;
       }
 
       .hero-shape-one {
@@ -1325,13 +1350,20 @@
       }
 
       .hero-right {
-        min-height: 285px;
+        min-height: 320px;
       }
 
       .intro-img {
         width: 330px;
-        right: -48px;
-        bottom: -45px;
+        right: -34px;
+        bottom: -155px;
+      }
+
+      .hero-profile::before {
+        right: -8px;
+        bottom: -34px;
+        width: 210px;
+        height: 210px;
       }
 
       .hero-shape-one,
