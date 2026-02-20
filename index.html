@@ -251,18 +251,22 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 20px 44px rgba(1, 20, 45, 0.34);
       animation: fadeInUp 1.18s ease-out both;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
     .hero-profile {
       display: flex;
       gap: 1rem;
       align-items: center;
-      margin-bottom: 1.15rem;
+      margin-bottom: 0.15rem;
     }
 
     .intro-img {
-      width: 110px;
-      height: 110px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       border-radius: 50%;
       border: 4px solid rgba(255, 255, 255, 0.42);
@@ -274,44 +278,6 @@
     .intro-img:hover {
       transform: translateY(-2px) scale(1.03);
       border-color: rgba(255, 255, 255, 0.7);
-    }
-
-    .hero-role {
-      margin: 0 0 0.35rem;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-
-    .hero-location {
-      margin: 0;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.84);
-    }
-
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-metric {
-      border-radius: 14px;
-      padding: 0.78rem;
-      background: rgba(255, 255, 255, 0.13);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .hero-metric strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .hero-metric span {
-      font-size: 0.8rem;
-      line-height: 1.35;
-      color: rgba(255, 255, 255, 0.86);
     }
 
     .contact-links {
@@ -1209,8 +1175,8 @@
       }
 
       .intro-img {
-        width: 98px;
-        height: 98px;
+        width: 104px;
+        height: 104px;
       }
 
       .hero-name {
@@ -1303,17 +1269,9 @@
         padding: 1rem;
       }
 
-      .hero-profile {
-        align-items: flex-start;
-      }
-
       .intro-img {
-        width: 86px;
-        height: 86px;
-      }
-
-      .hero-metrics {
-        grid-template-columns: 1fr;
+        width: 92px;
+        height: 92px;
       }
 
       .contact-links {
@@ -1403,20 +1361,6 @@
       <aside class="hero-right" aria-label="Quick profile highlights">
         <div class="hero-profile">
           <img alt="Karan Mistry" class="intro-img" src="1.jpg"/>
-          <div>
-            <p class="hero-role">Clinical & Technical Expert</p>
-            <p class="hero-location">Toronto, ON, Canada</p>
-          </div>
-        </div>
-        <div class="hero-metrics">
-          <div class="hero-metric">
-            <strong>5+ Years</strong>
-            <span>Biomedical engineering support in clinical settings</span>
-          </div>
-          <div class="hero-metric">
-            <strong>OR Ready</strong>
-            <span>Hands-on troubleshooting and surgical workflow support</span>
-          </div>
         </div>
         <div class="contact-links">
           <a href="tel:+14373662412">Call</a>
