@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Karan Mistry | Biomedical Engineer Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
 <style>
     :root {
       --primary-color: #0A66C2;
@@ -104,97 +104,238 @@
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: #fff;
-      padding: 100px 2rem 80px;
-      text-align: center;
+      padding: clamp(72px, 10vw, 120px) 2rem clamp(56px, 8vw, 92px);
       position: relative;
       overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18) 0%, transparent 36%),
+        radial-gradient(circle at 88% 84%, rgba(255, 255, 255, 0.14) 0%, transparent 38%),
+        linear-gradient(135deg, #0b4f96 0%, #0f74b4 48%, #16a6a1 100%);
     }
 
     header::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
+      -webkit-mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -90px;
+      top: -110px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      filter: blur(70px);
       pointer-events: none;
     }
 
     .hero-content {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-kicker {
+      margin: 0 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .hero-name {
+      margin: 0 0 1.1rem 0;
+      font-size: clamp(2.4rem, 5vw, 4.25rem);
+      font-weight: 800;
+      letter-spacing: -1.4px;
+      line-height: 1.05;
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      margin: 0 0 1.5rem;
+      opacity: 0.96;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 52ch;
+    }
+
+    .hero-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.7rem;
+      animation: fadeInUp 0.95s ease-out both;
+    }
+
+    .hero-tag {
+      padding: 0.42rem 0.82rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.08s ease-out both;
+    }
+
+    .hero-btn {
+      text-decoration: none;
+      color: #05254a;
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.72rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: var(--transition);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-btn-secondary {
+      color: #fff;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .hero-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      box-shadow: none;
+    }
+
+    .hero-right {
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(5, 28, 62, 0.32);
+      border-radius: 24px;
+      padding: 1.25rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 44px rgba(1, 20, 45, 0.34);
+      animation: fadeInUp 1.18s ease-out both;
+    }
+
+    .hero-profile {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.15rem;
+    }
+
     .intro-img {
-      width: 180px;
-      height: 180px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
       border-radius: 50%;
-      border: 6px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-      margin-bottom: 2rem;
+      border: 4px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+      flex-shrink: 0;
       transition: var(--transition);
     }
 
     .intro-img:hover {
-      transform: scale(1.05);
-      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px) scale(1.03);
+      border-color: rgba(255, 255, 255, 0.7);
     }
 
-    h1 {
-      margin: 0 0 1rem 0;
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
+    .hero-role {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      font-weight: 700;
     }
 
-    .subtitle {
-      font-size: 1.35rem;
-      margin-bottom: 2rem;
-      opacity: 0.95;
-      font-weight: 400;
-      line-height: 1.5;
+    .hero-location {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-metric {
+      border-radius: 14px;
+      padding: 0.78rem;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-metric strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-metric span {
+      font-size: 0.8rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.86);
     }
 
     .contact-links {
-      margin-top: 2rem;
-      font-size: 0.95rem;
       display: flex;
-      gap: 1.5rem;
-      justify-content: center;
+      gap: 0.65rem;
       flex-wrap: wrap;
-      align-items: center;
     }
 
     .contact-links a {
       color: #fff;
       text-decoration: none;
       transition: var(--transition);
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.6rem 1.2rem;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.83rem;
+      padding: 0.55rem 0.85rem;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
     }
 
     .contact-links a:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.24);
       transform: translateY(-2px);
-    }
-
-    .contact-links .divider {
-      color: rgba(255, 255, 255, 0.4);
     }
     .container {
       max-width: 1200px;
@@ -1025,8 +1166,16 @@
         max-width: 100%;
       }
 
-      h1 {
-        font-size: 2.8rem;
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        max-width: 640px;
+      }
+
+      .hero-name {
+        font-size: clamp(2.2rem, 7vw, 3.15rem);
       }
 
       h2 {
@@ -1052,20 +1201,33 @@
       }
 
       header {
-        padding: 80px 1.5rem 60px;
+        padding: 72px 1.5rem 56px;
+      }
+
+      .hero-right {
+        padding: 1.1rem;
       }
 
       .intro-img {
-        width: 150px;
-        height: 150px;
+        width: 98px;
+        height: 98px;
       }
 
-      h1 {
-        font-size: 2.25rem;
+      .hero-name {
+        font-size: clamp(2rem, 8vw, 2.6rem);
       }
 
       .subtitle {
-        font-size: 1.15rem;
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-btn {
+        flex: 1 1 220px;
+        text-align: center;
       }
 
       section {
@@ -1117,29 +1279,50 @@
       }
 
       header {
-        padding: 60px 1rem 50px;
+        padding: 62px 1rem 48px;
       }
 
-      .intro-img {
-        width: 130px;
-        height: 130px;
+      .hero-kicker {
+        letter-spacing: 0.12em;
       }
 
-      h1 {
-        font-size: 1.85rem;
+      .hero-name {
+        font-size: 1.9rem;
       }
 
       .subtitle {
         font-size: 1rem;
       }
 
+      .hero-tag-row {
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-right {
+        border-radius: 18px;
+        padding: 1rem;
+      }
+
+      .hero-profile {
+        align-items: flex-start;
+      }
+
+      .intro-img {
+        width: 86px;
+        height: 86px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
       .contact-links {
-        gap: 0.75rem;
+        gap: 0.5rem;
       }
 
       .contact-links a {
-        padding: 0.5rem 0.9rem;
-        font-size: 0.85rem;
+        padding: 0.5rem 0.72rem;
+        font-size: 0.8rem;
       }
 
       section {
@@ -1202,14 +1385,45 @@
 
 <header>
   <div class="hero-content">
-    <img alt="Karan Mistry" class="intro-img" src="1.jpg"/>
-    <h1>Karan Mistry</h1>
-    <div class="subtitle">Biomedical Engineer | Clinical & Technical Expert in Neuro-Navigation</div>
-    <div class="contact-links">
-      <span class="divider">Toronto, ON</span>
-      <a href="tel:+14373662412">+1 (437) 366 2412</a>
-      <a href="mailto:karanmistry333@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/karan-mistry33" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <p class="hero-kicker">Biomedical Engineering Portfolio</p>
+        <h1 class="hero-name">Karan Mistry</h1>
+        <p class="subtitle">Biomedical Engineer focused on clinical support, surgical integration, and technical excellence in neuro-navigation environments.</p>
+        <div class="hero-tag-row">
+          <span class="hero-tag">Neuro-Navigation</span>
+          <span class="hero-tag">Clinical Applications</span>
+          <span class="hero-tag">OR Workflow Optimization</span>
+        </div>
+        <div class="hero-actions">
+          <a class="hero-btn" href="#experience">View Experience</a>
+          <a class="hero-btn hero-btn-secondary" href="#work">See Field Work</a>
+        </div>
+      </div>
+      <aside class="hero-right" aria-label="Quick profile highlights">
+        <div class="hero-profile">
+          <img alt="Karan Mistry" class="intro-img" src="1.jpg"/>
+          <div>
+            <p class="hero-role">Clinical & Technical Expert</p>
+            <p class="hero-location">Toronto, ON, Canada</p>
+          </div>
+        </div>
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <strong>5+ Years</strong>
+            <span>Biomedical engineering support in clinical settings</span>
+          </div>
+          <div class="hero-metric">
+            <strong>OR Ready</strong>
+            <span>Hands-on troubleshooting and surgical workflow support</span>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a href="tel:+14373662412">Call</a>
+          <a href="mailto:karanmistry333@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/karan-mistry33" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        </div>
+      </aside>
     </div>
   </div>
 </header>
