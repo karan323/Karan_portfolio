@@ -281,6 +281,21 @@
       overflow: visible;
     }
 
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 22px 26px 18px 36px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 66% 34%, rgba(160, 235, 255, 0.32) 0%, rgba(160, 235, 255, 0.08) 36%, rgba(160, 235, 255, 0) 72%),
+        linear-gradient(155deg, rgba(8, 45, 92, 0.34) 0%, rgba(11, 84, 140, 0.22) 45%, rgba(22, 133, 166, 0.18) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 28px 50px rgba(3, 21, 42, 0.24);
+      backdrop-filter: blur(2px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .hero-shape {
       position: absolute;
       background: rgba(37, 114, 190, 0.72);
@@ -316,6 +331,7 @@
       position: relative;
       width: 100%;
       height: 100%;
+      isolation: isolate;
     }
 
     .hero-profile::before {
@@ -332,6 +348,20 @@
       z-index: 1;
     }
 
+    .hero-profile::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 6px;
+      width: 350px;
+      height: 430px;
+      border-radius: 48% 52% 56% 44% / 40% 45% 55% 60%;
+      background: linear-gradient(140deg, rgba(168, 229, 255, 0.26) 0%, rgba(60, 153, 206, 0.16) 42%, rgba(20, 84, 150, 0.1) 100%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 2;
+    }
+
     .intro-img {
       position: absolute;
       right: 16px;
@@ -344,12 +374,12 @@
       max-width: none;
       object-fit: contain;
       object-position: right bottom;
-      mask-image: none;
-      -webkit-mask-image: none;
+      -webkit-mask-image: radial-gradient(94% 90% at 70% 46%, #000 58%, rgba(0, 0, 0, 0.86) 78%, rgba(0, 0, 0, 0) 100%);
+      mask-image: radial-gradient(94% 90% at 70% 46%, #000 58%, rgba(0, 0, 0, 0.86) 78%, rgba(0, 0, 0, 0) 100%);
       border-radius: 0;
       border: 0;
       box-shadow: none;
-      filter: saturate(1.02) brightness(1.01) drop-shadow(0 18px 32px rgba(0, 0, 0, 0.28));
+      filter: saturate(0.96) contrast(1.06) brightness(1.01) drop-shadow(0 20px 34px rgba(2, 20, 40, 0.32));
       flex-shrink: 0;
       transition: var(--transition);
       z-index: 2;
@@ -1221,6 +1251,10 @@
         height: 440px;
       }
 
+      .hero-right::before {
+        inset: 20px 18px 16px 26px;
+      }
+
       .intro-img {
         right: 12px;
         top: -42px;
@@ -1232,6 +1266,13 @@
         bottom: 8px;
         width: 340px;
         height: 340px;
+      }
+
+      .hero-profile::after {
+        right: 8px;
+        top: 16px;
+        width: 290px;
+        height: 360px;
       }
 
       .hero-name {
@@ -1272,6 +1313,10 @@
         height: 350px;
       }
 
+      .hero-right::before {
+        inset: 16px 14px 14px 18px;
+      }
+
       .intro-img {
         right: 12px;
         top: -30px;
@@ -1283,6 +1328,13 @@
         bottom: 2px;
         width: 250px;
         height: 250px;
+      }
+
+      .hero-profile::after {
+        right: 10px;
+        top: 14px;
+        width: 210px;
+        height: 272px;
       }
 
       .hero-shape-one {
@@ -1400,6 +1452,11 @@
         height: 270px;
       }
 
+      .hero-right::before {
+        inset: 14px 10px 8px 10px;
+        border-radius: 20px;
+      }
+
       .intro-img {
         right: 12px;
         top: -20px;
@@ -1411,6 +1468,10 @@
         bottom: 0;
         width: 178px;
         height: 178px;
+      }
+
+      .hero-profile::after {
+        display: none;
       }
 
       .hero-shape-one,
