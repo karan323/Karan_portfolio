@@ -281,21 +281,6 @@
       overflow: visible;
     }
 
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 22px 26px 18px 36px;
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 66% 34%, rgba(160, 235, 255, 0.32) 0%, rgba(160, 235, 255, 0.08) 36%, rgba(160, 235, 255, 0) 72%),
-        linear-gradient(155deg, rgba(8, 45, 92, 0.34) 0%, rgba(11, 84, 140, 0.22) 45%, rgba(22, 133, 166, 0.18) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 28px 50px rgba(3, 21, 42, 0.24);
-      backdrop-filter: blur(2px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .hero-shape {
       position: absolute;
       background: rgba(37, 114, 190, 0.72);
@@ -331,7 +316,6 @@
       position: relative;
       width: 100%;
       height: 100%;
-      isolation: isolate;
     }
 
     .hero-profile::before {
@@ -348,20 +332,6 @@
       z-index: 1;
     }
 
-    .hero-profile::after {
-      content: '';
-      position: absolute;
-      right: 14px;
-      top: 6px;
-      width: 350px;
-      height: 430px;
-      border-radius: 48% 52% 56% 44% / 40% 45% 55% 60%;
-      background: linear-gradient(140deg, rgba(168, 229, 255, 0.26) 0%, rgba(60, 153, 206, 0.16) 42%, rgba(20, 84, 150, 0.1) 100%);
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 2;
-    }
-
     .intro-img {
       position: absolute;
       right: 16px;
@@ -374,12 +344,12 @@
       max-width: none;
       object-fit: contain;
       object-position: right bottom;
-      -webkit-mask-image: radial-gradient(94% 90% at 70% 46%, #000 58%, rgba(0, 0, 0, 0.86) 78%, rgba(0, 0, 0, 0) 100%);
-      mask-image: radial-gradient(94% 90% at 70% 46%, #000 58%, rgba(0, 0, 0, 0.86) 78%, rgba(0, 0, 0, 0) 100%);
+      mask-image: none;
+      -webkit-mask-image: none;
       border-radius: 0;
       border: 0;
       box-shadow: none;
-      filter: saturate(0.96) contrast(1.06) brightness(1.01) drop-shadow(0 20px 34px rgba(2, 20, 40, 0.32));
+      filter: saturate(1.02) brightness(1.01) drop-shadow(0 18px 32px rgba(0, 0, 0, 0.28));
       flex-shrink: 0;
       transition: var(--transition);
       z-index: 2;
@@ -407,6 +377,16 @@
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.24);
       backdrop-filter: blur(10px);
+      gap: 0.42rem;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .contact-links a svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      display: inline-block;
     }
 
     .contact-links a:hover {
@@ -1251,10 +1231,6 @@
         height: 440px;
       }
 
-      .hero-right::before {
-        inset: 20px 18px 16px 26px;
-      }
-
       .intro-img {
         right: 12px;
         top: -42px;
@@ -1266,13 +1242,6 @@
         bottom: 8px;
         width: 340px;
         height: 340px;
-      }
-
-      .hero-profile::after {
-        right: 8px;
-        top: 16px;
-        width: 290px;
-        height: 360px;
       }
 
       .hero-name {
@@ -1313,10 +1282,6 @@
         height: 350px;
       }
 
-      .hero-right::before {
-        inset: 16px 14px 14px 18px;
-      }
-
       .intro-img {
         right: 12px;
         top: -30px;
@@ -1328,13 +1293,6 @@
         bottom: 2px;
         width: 250px;
         height: 250px;
-      }
-
-      .hero-profile::after {
-        right: 10px;
-        top: 14px;
-        width: 210px;
-        height: 272px;
       }
 
       .hero-shape-one {
@@ -1452,11 +1410,6 @@
         height: 270px;
       }
 
-      .hero-right::before {
-        inset: 14px 10px 8px 10px;
-        border-radius: 20px;
-      }
-
       .intro-img {
         right: 12px;
         top: -20px;
@@ -1468,10 +1421,6 @@
         bottom: 0;
         width: 178px;
         height: 178px;
-      }
-
-      .hero-profile::after {
-        display: none;
       }
 
       .hero-shape-one,
@@ -1570,9 +1519,25 @@
           <a class="hero-btn" href="#work">See Field Work</a>
         </div>
         <div class="contact-links">
-          <a href="tel:+14373662412">Call</a>
-          <a href="mailto:karanmistry333@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/karan-mistry33" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+          <a href="tel:+14373662412">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+              <path d="M5 4h4l2 5-2.5 2.5a15 15 0 0 0 4 4L15 13l5 2v4a2 2 0 0 1-2.2 2A17 17 0 0 1 3 6.2 2 2 0 0 1 5 4Z" fill="currentColor"/>
+            </svg>
+            Contact
+          </a>
+          <a href="mailto:karanmistry333@gmail.com">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+              <rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="2" width="20" x="2" y="5"/>
+              <path d="m3 7 9 7 9-7" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Email
+          </a>
+          <a href="https://www.linkedin.com/in/karan-mistry33" rel="noopener noreferrer" target="_blank">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.5 8.5H3.4V20h3.1V8.5Zm.2-3.6A1.9 1.9 0 1 0 2.9 5a1.9 1.9 0 0 0 3.8 0ZM12 8.5H9V20h3V14c0-1.6.3-3.1 2.3-3.1 1.9 0 2 1.8 2 3.2V20h3V13.5c0-3.2-.7-5.6-4.4-5.6-1.8 0-2.9 1-3.4 1.9V8.5H12Z"/>
+            </svg>
+            LinkedIn
+          </a>
         </div>
       </div>
       <aside class="hero-right" aria-label="Quick profile highlights">
@@ -1580,7 +1545,7 @@
         <span class="hero-shape hero-shape-two" aria-hidden="true"></span>
         <span class="hero-shape hero-shape-three" aria-hidden="true"></span>
         <div class="hero-profile">
-          <img alt="Karan Mistry" class="intro-img" src="1.png"/>
+          <img alt="Karan Mistry" class="intro-img" src="1_clean.png"/>
         </div>
       </aside>
     </div>
