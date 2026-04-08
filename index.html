@@ -395,6 +395,136 @@
       background: rgba(255, 255, 255, 0.24);
       transform: translateY(-2px);
     }
+
+    .visitor-panel {
+      margin-top: 1.2rem;
+      padding: 1.2rem;
+      border-radius: 24px;
+      background: rgba(7, 33, 63, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 42px rgba(3, 17, 32, 0.16);
+      backdrop-filter: blur(16px);
+      animation: fadeInUp 1.24s ease-out both;
+    }
+
+    .visitor-kicker {
+      margin: 0 0 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(214, 240, 255, 0.78);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-title {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-copy {
+      margin: 0.45rem 0 0;
+      color: rgba(234, 246, 255, 0.88);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      max-width: 58ch;
+    }
+
+    .visitor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .visitor-item {
+      min-width: 0;
+      padding: 0.85rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .visitor-label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(208, 236, 255, 0.74);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-value {
+      display: block;
+      color: #fff;
+      font-size: 0.96rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .visitor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .visitor-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.82rem 1.15rem;
+      background: #fff;
+      color: #08315d;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .visitor-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .visitor-button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .visitor-button-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: none;
+    }
+
+    .visitor-button-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+
+    .visitor-status {
+      margin: 0.9rem 0 0;
+      min-height: 1.5rem;
+      color: rgba(228, 244, 255, 0.92);
+      font-size: 0.88rem;
+    }
+
+    .visitor-status.is-error {
+      color: #ffd1d1;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -1082,6 +1212,14 @@
       background: #fff;
     }
 
+    .admin-card .visitor-panel {
+      margin-top: 0;
+    }
+
+    .admin-card .visitor-grid {
+      grid-template-columns: 1fr;
+    }
+
     .admin-card h4 {
       margin: 0 0 0.8rem;
       font-size: 0.98rem;
@@ -1254,6 +1392,10 @@
         max-width: 600px;
       }
 
+      .visitor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       h2 {
         font-size: 1.75rem;
       }
@@ -1328,6 +1470,10 @@
 
       .hero-actions {
         max-width: 430px;
+      }
+
+      .visitor-grid {
+        grid-template-columns: 1fr;
       }
 
       .hero-btn {
@@ -1406,6 +1552,19 @@
 
       .hero-actions {
         grid-template-columns: 1fr;
+      }
+
+      .visitor-panel {
+        padding: 1rem;
+      }
+
+      .visitor-actions {
+        flex-direction: column;
+      }
+
+      .visitor-button {
+        width: 100%;
+        justify-content: center;
       }
 
       .hero-right {
@@ -1871,6 +2030,40 @@
 
     <div id="adminDashboard" style="display:none;">
       <div class="admin-card">
+        <h4>Visitor Information</h4>
+        <section class="visitor-panel" aria-labelledby="visitorInfoHeading">
+          <p class="visitor-kicker">Admin View</p>
+          <h2 class="visitor-title" id="visitorInfoHeading">Current browser network and location details</h2>
+          <p class="visitor-copy">
+            This panel shows information for the browser currently viewing the page. MAC addresses are not available to websites, and full visitor logs require a backend.
+          </p>
+          <div class="visitor-grid">
+            <div class="visitor-item">
+              <span class="visitor-label">Public IP</span>
+              <span class="visitor-value" id="visitorIp">Not loaded</span>
+            </div>
+            <div class="visitor-item">
+              <span class="visitor-label">Approximate Location</span>
+              <span class="visitor-value" id="visitorLocation">Not loaded</span>
+            </div>
+            <div class="visitor-item">
+              <span class="visitor-label">Timezone</span>
+              <span class="visitor-value" id="visitorTimezone">Not loaded</span>
+            </div>
+            <div class="visitor-item">
+              <span class="visitor-label">Device Location</span>
+              <span class="visitor-value" id="visitorCoordinates">Permission required</span>
+            </div>
+          </div>
+          <div class="visitor-actions">
+            <button class="visitor-button" id="shareLocationButton" type="button">Use Device Location</button>
+            <button class="visitor-button visitor-button-secondary" id="refreshVisitorInfoButton" type="button">Load Visitor Info</button>
+          </div>
+          <p class="visitor-status" id="visitorStatus" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <div class="admin-card">
         <h4>Edit Section Content</h4>
         <div class="admin-field">
           <label for="sectionSelect">Select Section</label>
@@ -1957,6 +2150,8 @@
     var ADMIN_LINK_PARAM = 'admin';
     var ADMIN_ID = 'admin';
     var ADMIN_PASSWORD = 'm3333@india';
+    var IP_GEO_LOOKUP_URL = 'https://ipwho.is/';
+    var PUBLIC_IP_LOOKUP_URL = 'https://api.ipify.org?format=json';
     var FIXED_NAV_ITEMS = [
       { id: 'about', label: 'About' },
       { id: 'skills', label: 'Skills' },
@@ -1970,6 +2165,13 @@
     var adminPanel = document.getElementById('adminPanel');
     var adminOverlay = document.getElementById('adminOverlay');
     var adminMessage = document.getElementById('adminMessage');
+    var visitorIp = document.getElementById('visitorIp');
+    var visitorLocation = document.getElementById('visitorLocation');
+    var visitorTimezone = document.getElementById('visitorTimezone');
+    var visitorCoordinates = document.getElementById('visitorCoordinates');
+    var visitorStatus = document.getElementById('visitorStatus');
+    var shareLocationButton = document.getElementById('shareLocationButton');
+    var refreshVisitorInfoButton = document.getElementById('refreshVisitorInfoButton');
 
     var adminCloseButton = document.getElementById('adminCloseButton');
     var adminLoginCard = document.getElementById('adminLoginCard');
@@ -2030,6 +2232,170 @@
       adminMessage.textContent = '';
       adminMessage.style.display = 'none';
       adminMessage.classList.remove('is-error');
+    }
+
+    function setVisitorStatus(message, isError) {
+      if (!visitorStatus) {
+        return;
+      }
+      visitorStatus.textContent = message || '';
+      visitorStatus.classList.toggle('is-error', !!isError);
+    }
+
+    function setVisitorValue(element, value) {
+      if (!element) {
+        return;
+      }
+      element.textContent = value || 'Unavailable';
+    }
+
+    function joinLocationParts(parts) {
+      return parts.filter(function (part) {
+        return !!part;
+      }).join(', ');
+    }
+
+    function formatApproximateLocation(data) {
+      if (!data) {
+        return 'Unavailable';
+      }
+
+      var location = joinLocationParts([
+        data.city,
+        data.region,
+        data.country
+      ]);
+
+      return location || 'Unavailable';
+    }
+
+    function formatCoordinateValue(position) {
+      if (!position || !position.coords) {
+        return 'Unavailable';
+      }
+
+      var latitude = position.coords.latitude.toFixed(5);
+      var longitude = position.coords.longitude.toFixed(5);
+      var accuracy = typeof position.coords.accuracy === 'number'
+        ? Math.round(position.coords.accuracy) + ' m accuracy'
+        : 'accuracy unavailable';
+
+      return latitude + ', ' + longitude + ' (' + accuracy + ')';
+    }
+
+    function setVisitorLoadingState() {
+      setVisitorValue(visitorIp, 'Loading...');
+      setVisitorValue(visitorLocation, 'Loading...');
+      setVisitorValue(visitorTimezone, 'Loading...');
+    }
+
+    function fetchJson(url) {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error('Request failed with status ' + response.status);
+        }
+        return response.json();
+      });
+    }
+
+    function loadVisitorInfo() {
+      if (!visitorIp || !visitorLocation || !visitorTimezone) {
+        return Promise.resolve();
+      }
+
+      setVisitorLoadingState();
+      if (refreshVisitorInfoButton) {
+        refreshVisitorInfoButton.disabled = true;
+      }
+      setVisitorStatus('Loading public IP and approximate network location...', false);
+
+      return fetchJson(IP_GEO_LOOKUP_URL)
+        .then(function (data) {
+          if (!data || data.success === false) {
+            throw new Error(data && data.message ? data.message : 'Unable to detect visitor details.');
+          }
+
+          setVisitorValue(visitorIp, data.ip || 'Unavailable');
+          setVisitorValue(visitorLocation, formatApproximateLocation(data));
+          setVisitorValue(visitorTimezone, data.timezone && data.timezone.id ? data.timezone.id : 'Unavailable');
+          setVisitorStatus('Public IP and approximate location loaded.', false);
+        })
+        .catch(function () {
+          return fetchJson(PUBLIC_IP_LOOKUP_URL)
+            .then(function (fallbackData) {
+              setVisitorValue(visitorIp, fallbackData.ip || 'Unavailable');
+              setVisitorValue(visitorLocation, 'Approximate location unavailable');
+              setVisitorValue(visitorTimezone, 'Unavailable');
+              setVisitorStatus('Public IP loaded. Approximate location lookup is unavailable right now.', true);
+            })
+            .catch(function () {
+              setVisitorValue(visitorIp, 'Unavailable');
+              setVisitorValue(visitorLocation, 'Unavailable');
+              setVisitorValue(visitorTimezone, 'Unavailable');
+              setVisitorStatus('Unable to load visitor network details from the browser.', true);
+            });
+        })
+        .finally(function () {
+          if (refreshVisitorInfoButton) {
+            refreshVisitorInfoButton.disabled = false;
+          }
+        });
+    }
+
+    function loadDeviceLocation() {
+      if (!visitorCoordinates) {
+        return;
+      }
+
+      if (!navigator.geolocation) {
+        setVisitorValue(visitorCoordinates, 'Geolocation not supported');
+        setVisitorStatus('This browser does not support device geolocation.', true);
+        return;
+      }
+
+      if (!window.isSecureContext) {
+        setVisitorValue(visitorCoordinates, 'HTTPS required');
+        setVisitorStatus('Device geolocation requires HTTPS or localhost.', true);
+        return;
+      }
+
+      if (shareLocationButton) {
+        shareLocationButton.disabled = true;
+      }
+      setVisitorStatus('Waiting for location permission...', false);
+
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setVisitorValue(visitorCoordinates, formatCoordinateValue(position));
+        setVisitorStatus('Device location captured from browser permission.', false);
+        if (shareLocationButton) {
+          shareLocationButton.disabled = false;
+        }
+      }, function (error) {
+        var message = 'Unable to access device location.';
+
+        if (error && error.code === error.PERMISSION_DENIED) {
+          message = 'Location permission was denied.';
+        } else if (error && error.code === error.POSITION_UNAVAILABLE) {
+          message = 'Device location is currently unavailable.';
+        } else if (error && error.code === error.TIMEOUT) {
+          message = 'Location request timed out.';
+        }
+
+        setVisitorValue(visitorCoordinates, 'Permission required');
+        setVisitorStatus(message, true);
+        if (shareLocationButton) {
+          shareLocationButton.disabled = false;
+        }
+      }, {
+        enableHighAccuracy: false,
+        timeout: 10000,
+        maximumAge: 300000
+      });
     }
 
     function getSections() {
@@ -2221,6 +2587,7 @@
         sessionStorage.setItem(AUTH_KEY, '1');
         adminLoginCard.style.display = 'none';
         adminDashboard.style.display = 'block';
+        loadVisitorInfo();
       } else {
         sessionStorage.removeItem(AUTH_KEY);
         adminLoginCard.style.display = 'block';
@@ -2422,6 +2789,16 @@
       setAuthenticated(false);
       showMessage('Logged out.', false);
     });
+
+    if (shareLocationButton) {
+      shareLocationButton.addEventListener('click', loadDeviceLocation);
+    }
+
+    if (refreshVisitorInfoButton) {
+      refreshVisitorInfoButton.addEventListener('click', function () {
+        loadVisitorInfo();
+      });
+    }
 
     resetChangesButton.addEventListener('click', function () {
       var approved = window.confirm('Reset all saved admin changes and reload the original page?');
