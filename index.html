@@ -525,6 +525,100 @@
       color: #ffd1d1;
     }
 
+    .visitor-section-title {
+      margin: 1.15rem 0 0.55rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .visitor-summary-card {
+      padding: 0.85rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .visitor-summary-label {
+      display: block;
+      margin-bottom: 0.28rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(208, 236, 255, 0.74);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-summary-value {
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .visitor-log-meta {
+      margin: 0.5rem 0 0;
+      color: rgba(234, 246, 255, 0.88);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .visitor-log-table-wrap {
+      margin-top: 1rem;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .visitor-log-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+
+    .visitor-log-table th,
+    .visitor-log-table td {
+      padding: 0.78rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 0.88rem;
+      vertical-align: top;
+    }
+
+    .visitor-log-table th {
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(208, 236, 255, 0.82);
+      font-family: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .visitor-log-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .visitor-log-empty {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.85rem 0.95rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(234, 246, 255, 0.9);
+      font-size: 0.9rem;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -1220,6 +1314,14 @@
       grid-template-columns: 1fr;
     }
 
+    .admin-card .visitor-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .admin-card .visitor-log-table-wrap {
+      overflow-x: auto;
+    }
+
     .admin-card h4 {
       margin: 0 0 0.8rem;
       font-size: 0.98rem;
@@ -1396,6 +1498,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .visitor-summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       h2 {
         font-size: 1.75rem;
       }
@@ -1473,6 +1579,10 @@
       }
 
       .visitor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visitor-summary {
         grid-template-columns: 1fr;
       }
 
@@ -1565,6 +1675,10 @@
       .visitor-button {
         width: 100%;
         justify-content: center;
+      }
+
+      .visitor-log-table {
+        min-width: 520px;
       }
 
       .hero-right {
@@ -2035,7 +2149,7 @@
           <p class="visitor-kicker">Admin View</p>
           <h2 class="visitor-title" id="visitorInfoHeading">Current browser network and location details</h2>
           <p class="visitor-copy">
-            This panel shows information for the browser currently viewing the page. MAC addresses are not available to websites, and full visitor logs require a backend.
+            This panel shows information for the browser currently viewing the page. MAC addresses are not available to websites.
           </p>
           <div class="visitor-grid">
             <div class="visitor-item">
@@ -2057,9 +2171,55 @@
           </div>
           <div class="visitor-actions">
             <button class="visitor-button" id="shareLocationButton" type="button">Use Device Location</button>
-            <button class="visitor-button visitor-button-secondary" id="refreshVisitorInfoButton" type="button">Load Visitor Info</button>
+            <button class="visitor-button visitor-button-secondary" id="refreshVisitorInfoButton" type="button">Refresh Current Viewer</button>
           </div>
           <p class="visitor-status" id="visitorStatus" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <div class="admin-card">
+        <h4>Visitor Log</h4>
+        <section class="visitor-panel" aria-labelledby="visitorLogHeading">
+          <p class="visitor-kicker">Last 7 Days</p>
+          <h2 class="visitor-title" id="visitorLogHeading">Unique visitors grouped by IP</h2>
+          <p class="visitor-copy">
+            This list shows visitors recorded by the local backend during the last 7 days, including country and province or state when the lookup is available.
+          </p>
+          <div class="visitor-summary" id="visitorSummary">
+            <div class="visitor-summary-card">
+              <span class="visitor-summary-label">Unique Visitors</span>
+              <span class="visitor-summary-value" id="visitorUniqueCount">0</span>
+            </div>
+            <div class="visitor-summary-card">
+              <span class="visitor-summary-label">Total Visits</span>
+              <span class="visitor-summary-value" id="visitorTotalCount">0</span>
+            </div>
+            <div class="visitor-summary-card">
+              <span class="visitor-summary-label">Window</span>
+              <span class="visitor-summary-value" id="visitorWindowLabel">7 days</span>
+            </div>
+          </div>
+          <p class="visitor-log-meta" id="visitorLogMeta">No visitor log loaded yet.</p>
+          <div class="visitor-actions">
+            <button class="visitor-button visitor-button-secondary" id="refreshVisitorLogButton" type="button">Refresh Visitor Log</button>
+          </div>
+          <p class="visitor-status" id="visitorLogStatus" aria-live="polite"></p>
+          <div class="visitor-log-empty" id="visitorLogEmpty">No visitors have been recorded in the last 7 days.</div>
+          <div class="visitor-log-table-wrap">
+            <table class="visitor-log-table">
+              <thead>
+                <tr>
+                  <th scope="col">IP</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">Province / State</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Visits</th>
+                  <th scope="col">Last Seen</th>
+                </tr>
+              </thead>
+              <tbody id="visitorLogBody"></tbody>
+            </table>
+          </div>
         </section>
       </div>
 
@@ -2150,6 +2310,9 @@
     var ADMIN_LINK_PARAM = 'admin';
     var ADMIN_ID = 'admin';
     var ADMIN_PASSWORD = 'm3333@india';
+    var VISITOR_LOG_DAYS = 7;
+    var VISITOR_LOG_ENDPOINT = '/api/visit';
+    var VISITOR_ADMIN_ENDPOINT = '/api/admin/visitors';
     var IP_GEO_LOOKUP_URL = 'https://ipwho.is/';
     var PUBLIC_IP_LOOKUP_URL = 'https://api.ipify.org?format=json';
     var FIXED_NAV_ITEMS = [
@@ -2172,6 +2335,14 @@
     var visitorStatus = document.getElementById('visitorStatus');
     var shareLocationButton = document.getElementById('shareLocationButton');
     var refreshVisitorInfoButton = document.getElementById('refreshVisitorInfoButton');
+    var visitorUniqueCount = document.getElementById('visitorUniqueCount');
+    var visitorTotalCount = document.getElementById('visitorTotalCount');
+    var visitorWindowLabel = document.getElementById('visitorWindowLabel');
+    var visitorLogMeta = document.getElementById('visitorLogMeta');
+    var visitorLogStatus = document.getElementById('visitorLogStatus');
+    var visitorLogEmpty = document.getElementById('visitorLogEmpty');
+    var visitorLogBody = document.getElementById('visitorLogBody');
+    var refreshVisitorLogButton = document.getElementById('refreshVisitorLogButton');
 
     var adminCloseButton = document.getElementById('adminCloseButton');
     var adminLoginCard = document.getElementById('adminLoginCard');
@@ -2203,6 +2374,9 @@
 
     var logoutButton = document.getElementById('logoutButton');
     var resetChangesButton = document.getElementById('resetChangesButton');
+    var visitorSnapshot = null;
+    var visitorSnapshotPromise = null;
+    var visitLoggedForPage = false;
 
     function slugify(value) {
       var normalized = (value || '')
@@ -2242,11 +2416,26 @@
       visitorStatus.classList.toggle('is-error', !!isError);
     }
 
+    function setVisitorLogStatus(message, isError) {
+      if (!visitorLogStatus) {
+        return;
+      }
+      visitorLogStatus.textContent = message || '';
+      visitorLogStatus.classList.toggle('is-error', !!isError);
+    }
+
     function setVisitorValue(element, value) {
       if (!element) {
         return;
       }
       element.textContent = value || 'Unavailable';
+    }
+
+    function setTextValue(element, value) {
+      if (!element) {
+        return;
+      }
+      element.textContent = value;
     }
 
     function joinLocationParts(parts) {
@@ -2269,6 +2458,26 @@
       return location || 'Unavailable';
     }
 
+    function normalizeSnapshot(snapshot) {
+      return {
+        ip: snapshot && snapshot.ip ? snapshot.ip : '',
+        country: snapshot && snapshot.country ? snapshot.country : '',
+        region: snapshot && snapshot.region ? snapshot.region : '',
+        city: snapshot && snapshot.city ? snapshot.city : '',
+        timezone: snapshot && snapshot.timezone ? snapshot.timezone : ''
+      };
+    }
+
+    function buildSnapshotFromGeoData(data) {
+      return normalizeSnapshot({
+        ip: data && data.ip ? data.ip : '',
+        country: data && data.country ? data.country : '',
+        region: data && data.region ? data.region : '',
+        city: data && data.city ? data.city : '',
+        timezone: data && data.timezone && data.timezone.id ? data.timezone.id : ''
+      });
+    }
+
     function formatCoordinateValue(position) {
       if (!position || !position.coords) {
         return 'Unavailable';
@@ -2289,12 +2498,37 @@
       setVisitorValue(visitorTimezone, 'Loading...');
     }
 
-    function fetchJson(url) {
+    function resetVisitorLogUi() {
+      setTextValue(visitorUniqueCount, '0');
+      setTextValue(visitorTotalCount, '0');
+      setTextValue(visitorWindowLabel, VISITOR_LOG_DAYS + ' days');
+      setTextValue(visitorLogMeta, 'No visitor log loaded yet.');
+      setVisitorLogStatus('', false);
+      if (visitorLogBody) {
+        visitorLogBody.innerHTML = '';
+      }
+      if (visitorLogEmpty) {
+        visitorLogEmpty.style.display = 'block';
+      }
+    }
+
+    function resetCurrentVisitorUi() {
+      setVisitorValue(visitorIp, 'Not loaded');
+      setVisitorValue(visitorLocation, 'Not loaded');
+      setVisitorValue(visitorTimezone, 'Not loaded');
+      setVisitorValue(visitorCoordinates, 'Permission required');
+      setVisitorStatus('', false);
+    }
+
+    function fetchJson(url, options) {
+      var requestOptions = options || {};
+      var headers = requestOptions.headers || {};
+      headers.Accept = 'application/json';
+
       return fetch(url, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
+        method: requestOptions.method || 'GET',
+        headers: headers,
+        body: requestOptions.body
       }).then(function (response) {
         if (!response.ok) {
           throw new Error('Request failed with status ' + response.status);
@@ -2303,7 +2537,150 @@
       });
     }
 
-    function loadVisitorInfo() {
+    function fetchVisitorSnapshot(forceReload) {
+      if (forceReload) {
+        visitorSnapshot = null;
+        visitorSnapshotPromise = null;
+      }
+
+      if (visitorSnapshot) {
+        return Promise.resolve(visitorSnapshot);
+      }
+
+      if (visitorSnapshotPromise) {
+        return visitorSnapshotPromise;
+      }
+
+      visitorSnapshotPromise = fetchJson(IP_GEO_LOOKUP_URL)
+        .then(function (data) {
+          if (!data || data.success === false) {
+            throw new Error(data && data.message ? data.message : 'Unable to detect visitor details.');
+          }
+
+          return buildSnapshotFromGeoData(data);
+        })
+        .catch(function () {
+          return fetchJson(PUBLIC_IP_LOOKUP_URL)
+            .then(function (fallbackData) {
+              return normalizeSnapshot({
+                ip: fallbackData && fallbackData.ip ? fallbackData.ip : ''
+              });
+            })
+            .catch(function () {
+              return normalizeSnapshot({});
+            });
+        })
+        .then(function (snapshot) {
+          visitorSnapshot = normalizeSnapshot(snapshot);
+          visitorSnapshotPromise = null;
+          return visitorSnapshot;
+        })
+        .catch(function (error) {
+          visitorSnapshotPromise = null;
+          throw error;
+        });
+
+      return visitorSnapshotPromise;
+    }
+
+    function getAdminHeaders() {
+      return {
+        'X-Admin-Id': ADMIN_ID,
+        'X-Admin-Password': ADMIN_PASSWORD
+      };
+    }
+
+    function formatDateTime(value) {
+      if (!value) {
+        return 'Unavailable';
+      }
+
+      var parsed = new Date(value);
+      if (Number.isNaN(parsed.getTime())) {
+        return value;
+      }
+
+      return parsed.toLocaleString();
+    }
+
+    function renderVisitorLog(data) {
+      var visitors = data && data.visitors ? data.visitors : [];
+      var summary = data && data.summary ? data.summary : {};
+      var days = data && data.days ? data.days : VISITOR_LOG_DAYS;
+
+      setTextValue(visitorUniqueCount, String(summary.unique_visitors || 0));
+      setTextValue(visitorTotalCount, String(summary.total_visits || 0));
+      setTextValue(visitorWindowLabel, days + ' days');
+
+      if (summary.last_seen) {
+        setTextValue(
+          visitorLogMeta,
+          'Updated ' + formatDateTime(data.generated_at) + '. Latest visit: ' + formatDateTime(summary.last_seen) + '.'
+        );
+      } else {
+        setTextValue(visitorLogMeta, 'No visits recorded in the selected time window.');
+      }
+
+      if (!visitorLogBody) {
+        return;
+      }
+
+      visitorLogBody.innerHTML = '';
+
+      if (!visitors.length) {
+        if (visitorLogEmpty) {
+          visitorLogEmpty.style.display = 'block';
+        }
+        return;
+      }
+
+      if (visitorLogEmpty) {
+        visitorLogEmpty.style.display = 'none';
+      }
+
+      for (var i = 0; i < visitors.length; i += 1) {
+        var visitor = visitors[i];
+        var row = document.createElement('tr');
+        row.innerHTML =
+          '<td>' + escapeHtml(visitor.ip || 'Unknown') + '</td>' +
+          '<td>' + escapeHtml(visitor.country || 'Unknown') + '</td>' +
+          '<td>' + escapeHtml(visitor.region || 'Unknown') + '</td>' +
+          '<td>' + escapeHtml(visitor.city || 'Unknown') + '</td>' +
+          '<td>' + escapeHtml(String(visitor.visit_count || 0)) + '</td>' +
+          '<td>' + escapeHtml(formatDateTime(visitor.last_seen)) + '</td>';
+        visitorLogBody.appendChild(row);
+      }
+    }
+
+    function loadVisitorLog() {
+      if (!visitorLogBody) {
+        return Promise.resolve();
+      }
+
+      if (refreshVisitorLogButton) {
+        refreshVisitorLogButton.disabled = true;
+      }
+      setVisitorLogStatus('Loading visitor log from the backend...', false);
+
+      return fetchJson(VISITOR_ADMIN_ENDPOINT + '?days=' + VISITOR_LOG_DAYS, {
+        headers: getAdminHeaders()
+      })
+        .then(function (data) {
+          renderVisitorLog(data);
+          setVisitorLogStatus('Visitor log loaded.', false);
+        })
+        .catch(function () {
+          resetVisitorLogUi();
+          setVisitorLogStatus('Unable to load visitor log. Make sure the local app server is running.', true);
+        })
+        .finally(function () {
+          if (refreshVisitorLogButton) {
+            refreshVisitorLogButton.disabled = false;
+          }
+        });
+    }
+
+    function loadVisitorInfo(forceReload) {
       if (!visitorIp || !visitorLocation || !visitorTimezone) {
         return Promise.resolve();
       }
@@ -2312,38 +2689,63 @@
       if (refreshVisitorInfoButton) {
         refreshVisitorInfoButton.disabled = true;
       }
-      setVisitorStatus('Loading public IP and approximate network location...', false);
+      setVisitorStatus('Loading current browser network details...', false);
 
-      return fetchJson(IP_GEO_LOOKUP_URL)
-        .then(function (data) {
-          if (!data || data.success === false) {
-            throw new Error(data && data.message ? data.message : 'Unable to detect visitor details.');
+      return fetchVisitorSnapshot(!!forceReload)
+        .then(function (snapshot) {
+          setVisitorValue(visitorIp, snapshot.ip || 'Unavailable');
+          setVisitorValue(visitorLocation, formatApproximateLocation(snapshot));
+          setVisitorValue(visitorTimezone, snapshot.timezone || 'Unavailable');
+
+          if (snapshot.country || snapshot.region || snapshot.city) {
+            setVisitorStatus('Current browser network details loaded.', false);
+          } else if (snapshot.ip) {
+            setVisitorStatus('Public IP loaded. Approximate location lookup is unavailable right now.', true);
+          } else {
+            setVisitorStatus('Unable to load visitor network details from the browser.', true);
           }
-
-          setVisitorValue(visitorIp, data.ip || 'Unavailable');
-          setVisitorValue(visitorLocation, formatApproximateLocation(data));
-          setVisitorValue(visitorTimezone, data.timezone && data.timezone.id ? data.timezone.id : 'Unavailable');
-          setVisitorStatus('Public IP and approximate location loaded.', false);
         })
         .catch(function () {
-          return fetchJson(PUBLIC_IP_LOOKUP_URL)
-            .then(function (fallbackData) {
-              setVisitorValue(visitorIp, fallbackData.ip || 'Unavailable');
-              setVisitorValue(visitorLocation, 'Approximate location unavailable');
-              setVisitorValue(visitorTimezone, 'Unavailable');
-              setVisitorStatus('Public IP loaded. Approximate location lookup is unavailable right now.', true);
-            })
-            .catch(function () {
-              setVisitorValue(visitorIp, 'Unavailable');
-              setVisitorValue(visitorLocation, 'Unavailable');
-              setVisitorValue(visitorTimezone, 'Unavailable');
-              setVisitorStatus('Unable to load visitor network details from the browser.', true);
-            });
+          setVisitorValue(visitorIp, 'Unavailable');
+          setVisitorValue(visitorLocation, 'Unavailable');
+          setVisitorValue(visitorTimezone, 'Unavailable');
+          setVisitorStatus('Unable to load visitor network details from the browser.', true);
         })
         .finally(function () {
           if (refreshVisitorInfoButton) {
             refreshVisitorInfoButton.disabled = false;
           }
+        });
+    }
+
+    function logCurrentVisit() {
+      if (visitLoggedForPage) {
+        return Promise.resolve();
+      }
+
+      return fetchVisitorSnapshot(false)
+        .then(function (snapshot) {
+          return fetchJson(VISITOR_LOG_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              ip: snapshot.ip,
+              country: snapshot.country,
+              region: snapshot.region,
+              city: snapshot.city,
+              timezone: snapshot.timezone,
+              path: window.location.pathname + window.location.search + window.location.hash,
+              referrer: document.referrer || ''
+            })
+          });
+        })
+        .then(function () {
+          visitLoggedForPage = true;
+        })
+        .catch(function () {
+          return Promise.resolve();
         });
     }
 
@@ -2587,11 +2989,14 @@
         sessionStorage.setItem(AUTH_KEY, '1');
         adminLoginCard.style.display = 'none';
         adminDashboard.style.display = 'block';
-        loadVisitorInfo();
+        loadVisitorInfo(false);
+        loadVisitorLog();
       } else {
         sessionStorage.removeItem(AUTH_KEY);
         adminLoginCard.style.display = 'block';
         adminDashboard.style.display = 'none';
+        resetCurrentVisitorUi();
+        resetVisitorLogUi();
       }
       hideMessage();
     }
@@ -2796,7 +3201,13 @@
 
     if (refreshVisitorInfoButton) {
       refreshVisitorInfoButton.addEventListener('click', function () {
-        loadVisitorInfo();
+        loadVisitorInfo(true);
+      });
+    }
+
+    if (refreshVisitorLogButton) {
+      refreshVisitorLogButton.addEventListener('click', function () {
+        loadVisitorLog();
       });
     }
 
@@ -2814,6 +3225,9 @@
     ensureSectionIds();
     refreshNavLinks();
     syncAdminLists(sectionSelect.value);
+    resetCurrentVisitorUi();
+    resetVisitorLogUi();
+    logCurrentVisit();
     setAuthenticated(sessionStorage.getItem(AUTH_KEY) === '1');
 
     if (isAdminLinkRequest()) {
